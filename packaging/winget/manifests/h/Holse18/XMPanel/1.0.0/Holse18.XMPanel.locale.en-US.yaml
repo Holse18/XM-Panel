@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.6.0.schema.json
+
+PackageIdentifier: Holse18.XMPanel
+PackageVersion: 1.0.0
+PackageLocale: en-US
+Publisher: Holse18
+PublisherUrl: https://github.com/Holse18
+PublisherSupportUrl: https://github.com/Holse18/XM-Panel/issues
+PrivacyUrl: https://github.com/Holse18/XM-Panel/blob/main/CODE_SIGNING.md#privacy-policy
+Author: Holse18
+PackageName: XM Panel
+PackageUrl: https://holse18.github.io/XM-Panel/
+License: MIT
+LicenseUrl: https://github.com/Holse18/XM-Panel/blob/main/LICENSE
+ShortDescription: Windows tray companion for Sony WH-1000X headphones (noise canceling, ambient sound, EQ and headset settings).
+Description: |-
+  XM Panel controls Sony WH-1000X headphones from the Windows taskbar over Bluetooth: switch noise canceling and
+  ambient sound, use EQ presets and custom EQ profiles, change DSEE Extreme, Speak-to-Chat, Touch Controls and other
+  headset settings, see the battery level, and restore your preferred settings every time the headset connects.
+  WH-1000XM4 tested; WH-1000XM3 should work; WH-1000XM5/XM6 experimental. Not affiliated with Sony.
+Moniker: xmpanel
+Tags:
+- bluetooth
+- equalizer
+- headphones
+- noise-cancelling
+- sony
+- tray
+- wh-1000xm4
+ReleaseNotesUrl: https://github.com/Holse18/XM-Panel/releases/tag/v1.0.0
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0

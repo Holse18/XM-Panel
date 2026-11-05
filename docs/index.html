@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XM Panel – Sony WH-1000XM4 control app for Windows (free)</title>
+<meta name="description" content="Control your Sony WH-1000XM4 headphones from Windows: noise canceling, ambient sound, EQ, DSEE and battery from the taskbar. A free, open-source alternative to Sony Headphones Connect for PC.">
+<link rel="canonical" href="https://holse18.github.io/XM-Panel/">
+<meta name="theme-color" content="#0b1a30">
+<link rel="icon" href="icon.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="XM Panel – Sony WH-1000XM4 control app for Windows">
+<meta property="og:description" content="Noise canceling, ambient sound, EQ and headset settings for Sony WH-1000X headphones, right from the Windows taskbar. Free and open source.">
+<meta property="og:url" content="https://holse18.github.io/XM-Panel/">
+<meta property="og:image" content="https://holse18.github.io/XM-Panel/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XM Panel – Sony WH-1000XM4 control app for Windows">
+<meta name="twitter:description" content="Noise canceling, ambient sound, EQ and headset settings for Sony WH-1000X headphones on Windows. Free and open source.">
+<meta name="twitter:image" content="https://holse18.github.io/XM-Panel/social-preview.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "XM Panel",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Windows tray companion for Sony WH-1000X headphones: noise canceling, ambient sound, equalizer, DSEE Extreme, Speak-to-Chat and battery level from the taskbar.",
+  "softwareVersion": "1.0.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "downloadUrl": "https://github.com/Holse18/XM-Panel/releases/latest",
+  "url": "https://holse18.github.io/XM-Panel/",
+  "image": "https://holse18.github.io/XM-Panel/social-preview.png",
+  "screenshot": "https://holse18.github.io/XM-Panel/panel.png",
+  "author": { "@type": "Person", "name": "Holse18", "url": "https://github.com/Holse18" },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is there a Sony Headphones Connect app for Windows?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Sony's headphone app (Headphones Connect, now Sound Connect) is only available for iPhone and Android. XM Panel is a free, unofficial alternative for Windows 10 and 11." } },
+    { "@type": "Question", "name": "Can I change Sony WH-1000XM4 noise cancelling from my PC?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Pair the headset with Windows, run XM Panel and click its tray icon to switch between noise canceling, ambient sound and off, and to set the ambient sound level." } },
+    { "@type": "Question", "name": "Does XM Panel change the equalizer on the headphones?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. EQ presets and custom EQ profiles are written to the headset itself, so they also apply on your phone and other devices." } },
+    { "@type": "Question", "name": "Which headphones does XM Panel support?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Sony WH-1000XM4 is tested. The WH-1000XM3 should work, and WH-1000XM5 and WH-1000XM6 support is experimental." } }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #f3f5f9; --card: #ffffff; --text: #141922; --muted: #5a6474; --line: #e1e5ec;
+    --accent: #0a6cff; --accent-text: #ffffff; --hero1: #e8f0ff; --hero2: #f3f5f9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1117; --card: #161b24; --text: #eef2f7; --muted: #9aa6b6; --line: #262e3a;
+      --accent: #4cc2ff; --accent-text: #001a2b; --hero1: #0b1a30; --hero2: #0d1117;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1117; --card: #161b24; --text: #eef2f7; --muted: #9aa6b6; --line: #262e3a;
+    --accent: #4cc2ff; --accent-text: #001a2b; --hero1: #0b1a30; --hero2: #0d1117;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 17px/1.6 "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header.hero { background: linear-gradient(180deg, var(--hero1), var(--hero2)); padding: 56px 0 40px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand img { width: 64px; height: 64px; }
+  h1 { font: 600 44px/1.1 "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif; margin: 0; }
+  .lead { font-size: 21px; color: var(--muted); margin: 18px 0 26px; }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px;
+         font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--text); background: var(--card); }
+  .btn.primary { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+  .note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .shot { width: 100%; max-width: 360px; justify-self: center; border-radius: 14px;
+          box-shadow: 0 24px 60px rgba(0,0,0,.35); border: 1px solid var(--line); }
+  section { padding: 40px 0; }
+  h2 { font: 600 28px/1.2 "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif; margin: 0 0 18px; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+  .shots { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .shots img { width: 300px; max-width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+  ul.models { padding-left: 20px; margin: 0; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 10px 0 0; color: var(--muted); }
+  ol li { margin-bottom: 6px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 34px; }
+    .lead { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="brand">
+        <img src="icon.png" alt="XM Panel icon" width="64" height="64">
+        <h1>XM Panel</h1>
+      </div>
+      <p class="lead"><strong>Control Sony WH-1000XM4 headphones from Windows.</strong>
+        Noise canceling, ambient sound, EQ and headset settings, right from the taskbar. No phone needed.</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://github.com/Holse18/XM-Panel/releases/latest">Download for Windows</a>
+        <a class="btn" href="https://github.com/Holse18/XM-Panel">View on GitHub</a>
+      </div>
+      <p class="note">Free and open source (MIT) · Windows 10 and 11 · about 250 KB, no installer</p>
+    </div>
+    <img class="shot" src="panel.png" alt="XM Panel tray panel showing noise canceling, ambient sound level and equalizer for a Sony WH-1000XM4" width="400" height="666">
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>A Sony Headphones Connect alternative for your PC</h2>
+    <p>Sony only makes its headphone app (Headphones Connect, now Sound Connect) for iPhone and Android. XM Panel gives you the same everyday controls on a Windows PC. It talks to the headset directly over Bluetooth, the same way Sony's app does, and lives in the system tray like Windows' own quick settings.</p>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card"><h3>Noise control</h3><p>Switch between noise canceling, ambient sound (level 0–20, Focus on Voice) and off.</p></div>
+      <div class="card"><h3>Equalizer</h3><p>Built-in presets plus your own EQ profiles with Clear Bass and 5 bands, with live preview.</p></div>
+      <div class="card"><h3>Remembers your settings</h3><p>The headset always powers on in noise canceling or ambient sound. XM Panel switches it back to your settings every time it connects.</p></div>
+      <div class="card"><h3>Headset settings</h3><p>DSEE Extreme, Speak-to-Chat, Pause When Taken Off, Touch Controls, Bluetooth quality and Automatic Power Off.</p></div>
+      <div class="card"><h3>Power and battery</h3><p>Battery level, low-battery alerts, turn the headset off from the PC, or automatically when Windows shuts down.</p></div>
+      <div class="card"><h3>Fits into Windows</h3><p>Light and dark mode, your accent colour, a translucent panel on Windows 11, keyboard shortcuts and start with Windows.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Screenshots</h2>
+    <div class="shots">
+      <img src="panel.png" alt="Main panel with noise control, equalizer and smart controls" width="400" height="666" loading="lazy">
+      <img src="settings.png" alt="Settings page with headset settings and equalizer profiles" width="400" height="882" loading="lazy">
+      <img src="equalizer.png" alt="Custom equalizer profile editor with Clear Bass and five bands" width="400" height="538" loading="lazy">
+    </div>
+  </section>
+
+  <section>
+    <h2>Supported headphones</h2>
+    <ul class="models">
+      <li><strong>Sony WH-1000XM4</strong>: tested</li>
+      <li><strong>Sony WH-1000XM3</strong>: should work (same protocol), untested</li>
+      <li><strong>Sony WH-1000XM5 and WH-1000XM6</strong>: experimental, untested</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How to install</h2>
+    <ol>
+      <li>Pair your headphones with Windows (Settings → Bluetooth &amp; devices).</li>
+      <li><a href="https://github.com/Holse18/XM-Panel/releases/latest">Download XMPanel.exe</a> and run it. There's nothing to install.</li>
+      <li>If Windows SmartScreen warns that the app is unrecognised, choose <em>More info → Run anyway</em>.</li>
+      <li>Click the headphone icon in the system tray.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <details open>
+      <summary>Is there a Sony Headphones Connect app for Windows?</summary>
+      <p>No. Sony's app is only for iPhone and Android. XM Panel is a free, unofficial alternative for Windows 10 and 11.</p>
+    </details>
+    <details>
+      <summary>Can I change WH-1000XM4 noise cancelling from my PC?</summary>
+      <p>Yes. Pair the headset with Windows, run XM Panel and click its tray icon to switch between noise canceling, ambient sound and off.</p>
+    </details>
+    <details>
+      <summary>Does it change the equalizer on the headphones?</summary>
+      <p>Yes. EQ presets and custom profiles are written to the headset, so they also apply on your phone.</p>
+    </details>
+    <details>
+      <summary>Does it send any data anywhere?</summary>
+      <p>No. XM Panel works fully offline and only talks to your headphones over Bluetooth. See the <a href="https://github.com/Holse18/XM-Panel/blob/main/CODE_SIGNING.md#privacy-policy">privacy policy</a>.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    XM Panel is an independent open-source project and is not affiliated with Sony. "Sony" and "WH-1000XM4" are trademarks of Sony Group Corporation.<br>
+    <a href="https://github.com/Holse18/XM-Panel">Source code</a> ·
+    <a href="https://github.com/Holse18/XM-Panel/blob/main/CODE_SIGNING.md">Code signing policy</a> ·
+    <a href="https://github.com/Holse18/XM-Panel/blob/main/LICENSE">MIT License</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,6 +1,10 @@
-# XM Panel
+# XM Panel: Sony WH-1000XM4 control app for Windows
 
-A small Windows tray companion for Sony WH-1000X headphones: noise canceling, ambient sound, EQ, and the headset settings that are normally only in Sony's phone app, right from the taskbar.
+A small Windows tray companion for Sony WH-1000X headphones (WH-1000XM4, and WH-1000XM3/XM5/XM6). Control noise canceling, ambient sound, EQ and the headset settings that are normally only in Sony's phone app, right from the taskbar. Free and open source.
+
+**[Download XMPanel.exe](https://github.com/Holse18/XM-Panel/releases/latest)** · [Website](https://holse18.github.io/XM-Panel/) · [Code signing policy](CODE_SIGNING.md)
+
+> **Looking for Sony Headphones Connect (Sony Sound Connect) on Windows?** Sony only makes its headphone app for iPhone and Android. XM Panel gives you the same everyday controls on a Windows 10 or 11 PC over Bluetooth: switch noise canceling and ambient sound, change the equalizer, turn DSEE Extreme and Speak-to-Chat on or off, and see the battery level, without picking up your phone.
 
 <p align="center">
   <img src="docs/panel.png" width="300" alt="Main panel">
@@ -31,6 +35,20 @@ A small Windows tray companion for Sony WH-1000X headphones: noise canceling, am
 | WH-1000XM5, WH-1000XM6 | Experimental and untested: uses the newer protocol, Pause When Taken Off is disabled |
 
 If you try it on an untested model, please open an issue and include `%LOCALAPPDATA%\XMPanel\xmpanel.log`.
+
+## FAQ
+
+**Can I change Sony WH-1000XM4 noise cancelling settings from my PC?**
+Yes. Pair the headset with Windows, start XM Panel and click its tray icon. You can switch between noise canceling, ambient sound and off, and set the ambient level.
+
+**Is there an official Sony Headphones Connect app for Windows?**
+No. Sony's app (Headphones Connect, now Sound Connect) is only for iPhone and Android. XM Panel is an independent, unofficial alternative for Windows.
+
+**Does it change the equalizer on the headset itself?**
+Yes. EQ presets and custom profiles are written to the headphones, so they also apply to your phone and other devices.
+
+**Do I need the phone app installed?**
+No. XM Panel talks to the headset directly over Bluetooth, the same way Sony's app does.
 
 ## Install
 
