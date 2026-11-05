@@ -23,6 +23,18 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Reflection;
+
+// File properties shown in Explorer (Details tab) and checked by code signing: keep the product
+// name fixed and bump the version together with MainForm.Version for each release.
+[assembly: AssemblyTitle("XM Panel")]
+[assembly: AssemblyProduct("XM Panel")]
+[assembly: AssemblyDescription("Windows tray companion for Sony WH-1000X headphones")]
+[assembly: AssemblyCompany("Holse18")]
+[assembly: AssemblyCopyright("Copyright (c) 2026 Holse18. MIT License.")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0")]
 
 // ================================================================ Data folder
 // Settings and logs live in %LOCALAPPDATA%\XMPanel, wherever the exe itself is kept (e.g. Downloads).

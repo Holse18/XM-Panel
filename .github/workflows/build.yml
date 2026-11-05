@@ -1,0 +1,61 @@
+# Builds XMPanel.exe on GitHub's Windows runners from the source in this repository.
+# Every push and pull request produces an unsigned build artifact.
+#
+# Code signing (SignPath Foundation): the "sign" job runs only for version tags (v1.2.3) and only
+# once the repository variable SIGNPATH_ORGANIZATION_ID and the secret SIGNPATH_API_TOKEN exist
+# (Settings > Secrets and variables > Actions). Each signing request still needs manual approval
+# in SignPath before the signed exe comes back.
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    outputs:
+      artifact-id: ${{ steps.upload.outputs.artifact-id }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build XMPanel.exe
+        shell: cmd
+        run: build.cmd "%GITHUB_WORKSPACE%\out"
+
+      - name: Upload unsigned build
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: XMPanel-unsigned
+          path: out/XMPanel.exe
+          if-no-files-found: error
+
+  sign:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v') && vars.SIGNPATH_ORGANIZATION_ID != ''
+    runs-on: windows-latest
+    steps:
+      - name: Submit signing request to SignPath
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: XM-Panel
+          signing-policy-slug: release-signing
+          github-artifact-id: ${{ needs.build.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: signed
+
+      - name: Upload signed build
+        uses: actions/upload-artifact@v4
+        with:
+          name: XMPanel-signed
+          path: signed/XMPanel.exe
+          if-no-files-found: error

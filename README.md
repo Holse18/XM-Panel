@@ -44,9 +44,15 @@ Requires Windows 10 or 11. Nothing else needs to be installed: it uses .NET Fram
 
 Clone the repo and run `build.cmd`. It compiles `XMPanel.cs` with the C# compiler that ships with Windows and puts the app in `%LOCALAPPDATA%\XMPanel` with a Start Menu shortcut. No SDK or Visual Studio is needed.
 
+Release builds are made by [GitHub Actions](.github/workflows/build.yml) from this repository, using the same `build.cmd`.
+
 ## Privacy
 
-The app talks only to your headset over Bluetooth, and never uses the internet. Settings are stored in `%LOCALAPPDATA%\XMPanel\settings.ini`.
+The app talks only to your headset over Bluetooth, and never uses the internet. Settings are stored in `%LOCALAPPDATA%\XMPanel\settings.ini`. Details are in the [privacy policy](CODE_SIGNING.md#privacy-policy).
+
+## Code signing policy
+
+See [CODE_SIGNING.md](CODE_SIGNING.md) for who builds, reviews and approves signed releases, the privacy policy, and what the app changes on your system.
 
 ## Uninstall
 
