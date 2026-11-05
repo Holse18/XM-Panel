@@ -9,6 +9,8 @@ set OUT=%LOCALAPPDATA%\XMPanel
 if not exist "%OUT%" mkdir "%OUT%"
 set RES=
 if exist headphones.png set RES=/resource:headphones.png,headphones.png
+rem app.ico is the exe's file icon (Explorer, Start Menu). Regenerate with: XMPanel.exe --make-icon app.ico
+if exist app.ico set RES=%RES% /win32icon:app.ico
 "%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /nologo /target:winexe /optimize /codepage:65001 /out:"%OUT%\XMPanel.exe" ^
   /r:System.Windows.Forms.dll /r:System.Drawing.dll /r:System.Management.dll %RES% XMPanel.cs || exit /b 1
 powershell -NoProfile -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Programs')+'\XM Panel.lnk'); $s.TargetPath='%OUT%\XMPanel.exe'; $s.Save()"

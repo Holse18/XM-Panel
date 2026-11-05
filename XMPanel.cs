@@ -2775,17 +2775,48 @@ class MainForm : Form
         return Icon.FromHandle(bmp.GetHicon());
     }
 
-    static Icon MakeIcon()
+    // App icon: the headphone artwork in white on a blue rounded tile (also used for app.ico).
+    static Bitmap RenderAppIcon(int size)
     {
-        var bmp = new Bitmap(32, 32);
+        var bmp = new Bitmap(size, size, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
         using (var g = Graphics.FromImage(bmp))
         {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            using (var p = Theme.Round(new RectangleF(0, 0, 32, 32), 7))
-            using (var b = new LinearGradientBrush(new Point(0, 0), new Point(0, 32), Color.FromArgb(64, 156, 255), Color.FromArgb(0, 100, 230))) g.FillPath(b, p);
-            HeadphoneArt.Draw(g, new RectangleF(4, 4, 24, 24), Color.White);
+            g.Clear(Color.Transparent);
+            g.SmoothingMode = SmoothingMode.AntiAlias; g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            float inset = size <= 20 ? 0 : size * 0.03f, rad = size * 0.22f;
+            using (var p = Theme.Round(new RectangleF(inset, inset, size - inset * 2, size - inset * 2), rad))
+            using (var b = new LinearGradientBrush(new PointF(0, 0), new PointF(0, size), Color.FromArgb(70, 160, 255), Color.FromArgb(0, 98, 225)))
+                g.FillPath(b, p);
+            int art = (int)Math.Round(size * (size <= 24 ? 0.86 : 0.74)), off = (size - art) / 2;
+            if (HeadphoneArt.HasArtwork) g.DrawImage(HeadphoneArt.Artwork(art, Color.White), off, off, art, art);
+            else HeadphoneArt.Draw(g, new RectangleF(off, off, art, art), Color.White);
         }
-        return Icon.FromHandle(bmp.GetHicon());
+        return bmp;
+    }
+
+    static Icon MakeIcon() { return Icon.FromHandle(RenderAppIcon(32).GetHicon()); }
+
+    // Writes a multi-size .ico (PNG-compressed entries, as Windows Vista+ expects for large sizes).
+    static void WriteIco(string path)
+    {
+        int[] sizes = { 16, 20, 24, 32, 40, 48, 64, 128, 256 };
+        var pngs = new List<byte[]>();
+        foreach (int s in sizes)
+            using (var bmp = RenderAppIcon(s))
+            using (var ms = new MemoryStream()) { bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png); pngs.Add(ms.ToArray()); }
+        using (var w = new BinaryWriter(File.Create(path)))
+        {
+            w.Write((short)0); w.Write((short)1); w.Write((short)sizes.Length); // ICONDIR
+            int offset = 6 + 16 * sizes.Length;
+            for (int i = 0; i < sizes.Length; i++)                               // ICONDIRENTRY
+            {
+                w.Write((byte)(sizes[i] >= 256 ? 0 : sizes[i])); w.Write((byte)(sizes[i] >= 256 ? 0 : sizes[i]));
+                w.Write((byte)0); w.Write((byte)0); w.Write((short)1); w.Write((short)32);
+                w.Write(pngs[i].Length); w.Write(offset); offset += pngs[i].Length;
+            }
+            foreach (var png in pngs) w.Write(png);
+        }
     }
 
     // Diagnostic: send read-only GET queries and log what the headset answers (to probe.log).
@@ -2828,6 +2859,8 @@ class MainForm : Form
         using (var g = Graphics.FromHwnd(IntPtr.Zero)) Theme.S = g.DpiX / 96f;
         Theme.Load();
         if (Array.IndexOf(args, "--probe") >= 0) { Probe(args); return; }
+        int mi = Array.IndexOf(args, "--make-icon"); // build helper: writes app.ico for the exe
+        if (mi >= 0 && mi + 1 < args.Length) { WriteIco(args[mi + 1]); return; }
         int pu = Array.IndexOf(args, "--preview-ui"); // render the whole panel to a PNG for design checks
         if (pu >= 0 && pu + 1 < args.Length)
         {
