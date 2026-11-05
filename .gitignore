@@ -1,0 +1,9 @@
+# Build output and local runtime files
+*.exe
+*.log
+settings.ini
+dist/
+
+# Local-only artwork and scratch images
+headphones-original.png
+icon-preview.png
