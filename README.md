@@ -1,6 +1,6 @@
-# XM Panel: Sony WH-1000XM4 control app for Windows
+# XM Panel: free Windows app for Sony XM headphones (WH-1000XM4)
 
-A small Windows tray companion for Sony WH-1000X headphones (WH-1000XM4, and WH-1000XM3/XM5/XM6). Control noise canceling, ambient sound, EQ and the headset settings that are normally only in Sony's phone app, right from the taskbar. Free and open source.
+A small Windows app for Sony WH-1000XM headphones (WH-1000XM4, and WH-1000XM3/XM5/XM6) that lives in the taskbar. Control noise canceling, ambient sound, EQ and the headset settings that are normally only in Sony's phone app, right from the taskbar. Free and open source.
 
 **[Download XMPanel.exe](https://github.com/Holse18/XM-Panel/releases/latest)** · [Website](https://holse18.github.io/XM-Panel/) · [Code signing policy](CODE_SIGNING.md)
 
@@ -41,8 +41,8 @@ If you try it on an untested model, please open an issue and include `%LOCALAPPD
 **Can I change Sony WH-1000XM4 noise cancelling settings from my PC?**
 Yes. Pair the headset with Windows, start XM Panel and click its tray icon. You can switch between noise canceling, ambient sound and off, and set the ambient level.
 
-**Is there an official Sony Headphones Connect app for Windows?**
-No. Sony's app (Headphones Connect, now Sound Connect) is only for iPhone and Android. XM Panel is an independent, unofficial alternative for Windows.
+**Is there a Sony XM headphones app for Windows?**
+Not from Sony: its app (Headphones Connect, now Sound Connect) is only for iPhone and Android. XM Panel is an independent, unofficial Windows app for Sony WH-1000XM headphones.
 
 **Does it change the equalizer on the headset itself?**
 Yes. EQ presets and custom profiles are written to the headphones, so they also apply to your phone and other devices.
